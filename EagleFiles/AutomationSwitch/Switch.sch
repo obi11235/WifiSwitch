@@ -7664,7 +7664,9 @@ These are standard reverse protection diodes and small signal diodes. SMA packag
 <part name="C1" library="SparkFun-Passives" deviceset="CAP_POL" device="PTH1" value="100uF"/>
 <part name="C2" library="SparkFun-Passives" deviceset="CAP" device="PTH" value="0.1uF"/>
 <part name="R11" library="SparkFun-Passives" deviceset="RPACK*" device="-BUSSED-SIP-PTH-5" value="10K"/>
-<part name="JP1" library="SparkFun-Connectors" deviceset="M02" device="JST-PTH-2"/>
+<part name="JP1" library="SparkFun-Connectors" deviceset="M02" device="JST-PTH-2">
+<attribute name="LABEL" value="DC IN"/>
+</part>
 <part name="JP3" library="SparkFun-Connectors" deviceset="M04" device="JST-PTH" value="CH4 Exp"/>
 <part name="D1" library="SparkFun-DiscreteSemi" deviceset="DIODE" device="PTH"/>
 <part name="GND1" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
@@ -7715,7 +7717,9 @@ These are standard reverse protection diodes and small signal diodes. SMA packag
 <instance part="C1" gate="G$1" x="139.7" y="-15.24"/>
 <instance part="C2" gate="G$1" x="210.82" y="-12.7" rot="R90"/>
 <instance part="R11" gate="G$1" x="170.18" y="-40.64"/>
-<instance part="JP1" gate="G$1" x="43.18" y="-12.7"/>
+<instance part="JP1" gate="G$1" x="43.18" y="-12.7">
+<attribute name="LABEL" x="43.18" y="-12.7" size="1.778" layer="96"/>
+</instance>
 <instance part="JP3" gate="G$1" x="231.14" y="-93.98" rot="R180"/>
 <instance part="D1" gate="G$1" x="86.36" y="-10.16"/>
 <instance part="GND1" gate="1" x="63.5" y="-20.32"/>
