@@ -132,13 +132,18 @@ void loop() {
     if(chan_4_state == CLICK_LONG)
     {
       status_led_status = LED_BLINK_SLOW;
-      resetWifi();
       chan_4_state = CLICK_NONE;
+      configurationState();
       status_led_status = LED_ON;
     }
     
     if(chan_4_state == CLICK_SHORT)
+    {
+      //status_led_status = LED_BLINK_SLOW;
+      //resetWifi();
       chan_4_state = CLICK_NONE;
+      //status_led_status = LED_ON;
+    }
     
     if(chan_change)
     {
@@ -317,16 +322,23 @@ void sendUpdate()
   String body = "";
   int char_cursor = 0;
   int char_count = 0;
+  boolean done = false;
   
-  uint8_t data_length = 0;
+  uint8_t data_length = -1;
   uint8_t method = 0;
   String page = "";
   unsigned long lastRead = millis();
-  while (www.connected() && (millis() - lastRead < IDLE_TIMEOUT_MS)) {
-    while (www.available()) {
+  while (www.connected() && (millis() - lastRead < IDLE_TIMEOUT_MS) && !done)
+  {
+    while (www.available())
+    {
       char c = www.read();
       if(char_cursor > -1) response += c;
-      else body += c;
+      else 
+      {
+        body += c;
+        if( data_length >= 0 && body.length() >= data_length) done = true;
+      }
       //Serial.print(c);
       lastRead = millis();
       char_count = (char_count + 1) % 10;

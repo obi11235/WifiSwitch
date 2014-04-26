@@ -84,4 +84,201 @@ void readConfigIntVal(uint8_t var, int &value)
   value = EEPROM.read(addr);
 }
 
+void loadConfigFromSerial()
+{
+  char tmp_str[32] = "";
+  int16_t tmp_int = 0;
+  int rtn_int = 0;
+  tmp_str[0] ='\0';
+  
+  Serial.println("Serial Mode");
+  Serial.println("SSID:");
+  readConfigLine(tmp_str, 32);
+  if(tmp_str[0] != '\0') writeConfigVal(CFG_SSID, tmp_str);
+  readConfigStringVal(CFG_SSID, tmp_str);
+  Serial.println(tmp_str);
+  
+  Serial.println("Password:");
+  readConfigLine(tmp_str, 32);
+  if(tmp_str[0] != '\0') writeConfigVal(CFG_PWD, tmp_str);
+  readConfigStringVal(CFG_PWD, tmp_str);
+  Serial.println(tmp_str);
+  
+  Serial.println("Security:");
+  tmp_int = readConfigInt();
+  if(tmp_int != -1)
+  {
+    tmp_str[0] = tmp_int;
+    tmp_str[1] = '\0';
+    writeConfigVal(CFG_SECURITY, tmp_str);
+  }
+  readConfigIntVal(CFG_SECURITY, rtn_int);
+  Serial.println(rtn_int);
+  
+  Serial.println("Mode:");
+  tmp_int = readConfigInt();
+  if(tmp_int != -1)
+  {
+    tmp_str[0] = tmp_int;
+    tmp_str[1] = '\0';
+    writeConfigVal(CFG_MODE, tmp_str);
+  }
+  readConfigIntVal(CFG_MODE, rtn_int);
+  Serial.println(rtn_int);
+  
+  Serial.println("Host IP A:");
+  tmp_int = readConfigInt();
+  if(tmp_int != -1)
+  {
+    tmp_str[0] = tmp_int;
+    tmp_str[1] = '\0';
+    writeConfigVal(CFG_HOST_IP_A, tmp_str);
+  }
+  readConfigIntVal(CFG_HOST_IP_A, rtn_int);
+  Serial.println(rtn_int);
+  
+  Serial.println("Host IP B:");
+  tmp_int = readConfigInt();
+  if(tmp_int != -1)
+  {
+    tmp_str[0] = tmp_int;
+    tmp_str[1] = '\0';
+    writeConfigVal(CFG_HOST_IP_B, tmp_str);
+  }
+  readConfigIntVal(CFG_HOST_IP_B, rtn_int);
+  Serial.println(rtn_int);
+  
+  Serial.println("Host IP C:");
+  tmp_int = readConfigInt();
+  if(tmp_int != -1)
+  {
+    tmp_str[0] = tmp_int;
+    tmp_str[1] = '\0';
+    writeConfigVal(CFG_HOST_IP_C, tmp_str);
+  }
+  readConfigIntVal(CFG_HOST_IP_C, rtn_int);
+  Serial.println(rtn_int);
+  
+  Serial.println("Host IP D:");
+  tmp_int = readConfigInt();
+  if(tmp_int != -1)
+  {
+    tmp_str[0] = tmp_int;
+    tmp_str[1] = '\0';
+    writeConfigVal(CFG_HOST_IP_D, tmp_str);
+  }
+  readConfigIntVal(CFG_HOST_IP_D, rtn_int);
+  Serial.println(rtn_int);
+  
+  Serial.println("Host Name:");
+  readConfigLine(tmp_str, 32);
+  if(tmp_str[0] != '\0') writeConfigVal(CFG_HOST_NAME, tmp_str);
+  readConfigStringVal(CFG_HOST_NAME, tmp_str);
+  Serial.println(tmp_str);
+  
+  Serial.println("Status Path:");
+  readConfigLine(tmp_str, 32);
+  if(tmp_str[0] != '\0') writeConfigVal(CFG_HOST_PATH_STATUS, tmp_str);
+  readConfigStringVal(CFG_HOST_PATH_STATUS, tmp_str);
+  Serial.println(tmp_str);
+  
+  Serial.println("Reg Path:");
+  readConfigLine(tmp_str, 32);
+  if(tmp_str[0] != '\0') writeConfigVal(CFG_HOST_PATH_REGISTER, tmp_str);
+  readConfigStringVal(CFG_HOST_PATH_REGISTER, tmp_str);
+  Serial.println(tmp_str);
+  
+}
 
+void readConfigLine(char *line, int max_chars)
+{
+  boolean done = false;
+  int chars = 0;
+  line[0] = '\0';
+  while (!done)
+  {
+    while (Serial.available() > 0)
+    {
+      char c = Serial.read();
+      if(c == '\n') done = true;
+      else if(chars < max_chars && c != '\n')
+      {
+        line[chars] = c;
+        line[chars+1] = '\0';
+      }
+      chars ++;
+    }
+  }
+}
+  
+int16_t readConfigInt()
+{
+  boolean done = false;
+  //int val = -1;
+  String in = "";
+  while (!done)
+  {
+    while (Serial.available() > 0)
+    {
+      char c = Serial.read();
+      if(c == '\n')
+      {
+        done = true;
+        if(in.length() == 0) return -1;
+        else return in.toInt();
+      }
+      else in += c;
+      //if(val == -1) val = Serial.parseInt();
+      //else if(Serial.read() == '\n') done = true;
+    }
+  }
+  //return val;
+}
+
+void configurationState()
+{
+  Serial.println("Config Mode");
+  int chan_1_state_orig = chan_1_state;
+  int chan_2_state_orig = chan_2_state;
+  int chan_3_state_orig = chan_3_state;
+  int chan_4_state_orig = chan_4_state;
+  
+  
+  int led_1_state_orig = led_1_state;
+  int led_2_state_orig = led_2_state;
+  int led_3_state_orig = led_3_state;
+  
+  boolean chan_change_orig = chan_change;
+  
+  chan_1_state = CLICK_NONE;
+  chan_2_state = CLICK_NONE;
+  chan_3_state = CLICK_NONE;
+  chan_4_state = CLICK_NONE;
+  
+  led_1_state = LED_BLINK_FAST;
+  led_2_state = LED_BLINK_FAST;
+  led_3_state = LED_BLINK_FAST;
+  
+  while(chan_1_state == CLICK_NONE &&
+  chan_2_state == CLICK_NONE &&
+  chan_3_state == CLICK_NONE &&
+  chan_4_state == CLICK_NONE) delay(1000);
+  
+  if(chan_1_state == CLICK_SHORT || chan_1_state == CLICK_LONG) loadConfigFromSerial();
+  //else if(chan_2_state == CLICK_SHORT || chan_2_state == CLICK_LONG) load web config...
+  else if(chan_3_state == CLICK_SHORT || chan_3_state == CLICK_LONG) resetWifi();
+  else if(chan_4_state == CLICK_SHORT || chan_4_state == CLICK_LONG) Serial.println("Exit");
+  
+  chan_1_state = chan_1_state_orig;
+  chan_2_state = chan_2_state_orig;
+  chan_3_state = chan_3_state_orig;
+  chan_4_state = chan_4_state_orig;
+  
+  led_1_state = led_1_state_orig;
+  led_2_state = led_2_state_orig;
+  led_3_state = led_3_state_orig;
+  
+  chan_change = chan_change_orig;
+  
+  Serial.println("Config Mode Done");
+}
