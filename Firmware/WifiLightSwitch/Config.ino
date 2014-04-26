@@ -188,6 +188,7 @@ void loadConfigFromSerial()
   readConfigStringVal(CFG_HOST_PATH_REGISTER, tmp_str);
   Serial.println(tmp_str);
   
+  loadConfig();
 }
 
 void readConfigLine(char *line, int max_chars)
@@ -214,7 +215,6 @@ void readConfigLine(char *line, int max_chars)
 int16_t readConfigInt()
 {
   boolean done = false;
-  //int val = -1;
   String in = "";
   while (!done)
   {
@@ -228,11 +228,8 @@ int16_t readConfigInt()
         else return in.toInt();
       }
       else in += c;
-      //if(val == -1) val = Serial.parseInt();
-      //else if(Serial.read() == '\n') done = true;
     }
   }
-  //return val;
 }
 
 void configurationState()
