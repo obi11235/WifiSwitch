@@ -7681,7 +7681,7 @@ These are standard reverse protection diodes and small signal diodes. SMA packag
 <part name="GND12" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="GND13" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="C3" library="SparkFun-Passives" deviceset="CAP" device="PTH" value="0.1uF"/>
-<part name="C4" library="SparkFun-Passives" deviceset="CAP_POL" device="PTH1" value="10uF"/>
+<part name="C4" library="SparkFun-Passives" deviceset="CAP_POL" device="PTH2" value="10uF"/>
 <part name="GND4" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="C5" library="SparkFun-Passives" deviceset="CAP" device="PTH" value="0.1uF"/>
 <part name="C6" library="SparkFun-Passives" deviceset="CAP" device="PTH" value="0.1uF"/>

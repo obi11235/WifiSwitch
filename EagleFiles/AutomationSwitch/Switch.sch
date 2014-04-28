@@ -7647,16 +7647,16 @@ These are standard reverse protection diodes and small signal diodes. SMA packag
 <part name="AVR_RESET" library="SparkFun-Electromechanical" deviceset="TAC_SWITCH" device="PTH"/>
 <part name="SOFTWARE_RESET" library="SparkFun-Electromechanical" deviceset="TAC_SWITCH" device="PTH"/>
 <part name="R3" library="resistor" deviceset="R-US_" device="0207/15" value="10K"/>
-<part name="R6" library="resistor" deviceset="R-US_" device="0207/15"/>
-<part name="R7" library="resistor" deviceset="R-US_" device="0207/15"/>
-<part name="R8" library="resistor" deviceset="R-US_" device="0207/15"/>
-<part name="R9" library="resistor" deviceset="R-US_" device="0207/15"/>
-<part name="R10" library="resistor" deviceset="R-US_" device="0207/15"/>
-<part name="CH1_LED" library="SparkFun-LED" deviceset="LED" device="3MM"/>
-<part name="CH2_LED" library="SparkFun-LED" deviceset="LED" device="3MM"/>
-<part name="CH3_LED" library="SparkFun-LED" deviceset="LED" device="3MM"/>
-<part name="STATUS_LED" library="SparkFun-LED" deviceset="LED" device="3MM"/>
-<part name="ERROR_LED" library="SparkFun-LED" deviceset="LED" device="3MM"/>
+<part name="R6" library="resistor" deviceset="R-US_" device="0207/15" value="2k"/>
+<part name="R7" library="resistor" deviceset="R-US_" device="0207/15" value="2k"/>
+<part name="R8" library="resistor" deviceset="R-US_" device="0207/15" value="2k"/>
+<part name="R9" library="resistor" deviceset="R-US_" device="0207/15" value="2k"/>
+<part name="R10" library="resistor" deviceset="R-US_" device="0207/15" value="2k"/>
+<part name="CH1_LED" library="SparkFun-LED" deviceset="LED" device="3MM" value="Blue"/>
+<part name="CH2_LED" library="SparkFun-LED" deviceset="LED" device="3MM" value="Blue"/>
+<part name="CH3_LED" library="SparkFun-LED" deviceset="LED" device="3MM" value="Blue"/>
+<part name="STATUS_LED" library="SparkFun-LED" deviceset="LED" device="3MM" value="Green"/>
+<part name="ERROR_LED" library="SparkFun-LED" deviceset="LED" device="3MM" value="Red"/>
 <part name="CH1_BTN" library="SparkFun-Electromechanical" deviceset="SWITCH-MOMENTARY-2" device="12MM"/>
 <part name="CH2_BTN" library="SparkFun-Electromechanical" deviceset="SWITCH-MOMENTARY-2" device="12MM"/>
 <part name="CH3_BTN" library="SparkFun-Electromechanical" deviceset="SWITCH-MOMENTARY-2" device="12MM"/>
@@ -7681,7 +7681,7 @@ These are standard reverse protection diodes and small signal diodes. SMA packag
 <part name="GND12" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="GND13" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="C3" library="SparkFun-Passives" deviceset="CAP" device="PTH" value="0.1uF"/>
-<part name="C4" library="SparkFun-Passives" deviceset="CAP_POL" device="PTH1" value="10uF"/>
+<part name="C4" library="SparkFun-Passives" deviceset="CAP_POL" device="PTH2" value="10uF"/>
 <part name="GND4" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="C5" library="SparkFun-Passives" deviceset="CAP" device="PTH" value="0.1uF"/>
 <part name="C6" library="SparkFun-Passives" deviceset="CAP" device="PTH" value="0.1uF"/>
@@ -8281,16 +8281,6 @@ These are standard reverse protection diodes and small signal diodes. SMA packag
 <errors>
 <approved hash="113,1,37.3583,-114.689,AVR_RESET,,,,,"/>
 <approved hash="113,1,41.9953,-129.929,SOFTWARE_RESET,,,,,"/>
-<approved hash="113,1,101.6,-115.845,R6,,,,,"/>
-<approved hash="113,1,101.6,-123.465,R7,,,,,"/>
-<approved hash="113,1,101.6,-131.085,R8,,,,,"/>
-<approved hash="113,1,101.6,-138.705,R9,,,,,"/>
-<approved hash="113,1,101.6,-146.325,R10,,,,,"/>
-<approved hash="113,1,117.794,-116.518,CH1_LED,,,,,"/>
-<approved hash="113,1,117.794,-124.138,CH2_LED,,,,,"/>
-<approved hash="113,1,117.794,-131.758,CH3_LED,,,,,"/>
-<approved hash="113,1,115.513,-139.378,STATUS_LED,,,,,"/>
-<approved hash="113,1,115.745,-146.998,ERROR_LED,,,,,"/>
 <approved hash="113,1,86.36,-9.67317,D1,,,,,"/>
 </errors>
 </schematic>
